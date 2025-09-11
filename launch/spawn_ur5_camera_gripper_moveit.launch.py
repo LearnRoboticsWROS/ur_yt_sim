@@ -23,6 +23,10 @@ def generate_launch_description():
         get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py'
     )
 
+    world_file = os.path.join(
+        get_package_share_directory('ur_yt_sim'), 'worlds', 'world1.world'
+    )
+
     moveit_config = (
         MoveItConfigsBuilder("custom_robot", package_name="ur5_camera_gripper_moveit_config")
         .robot_description(file_path="config/ur.urdf.xacro")
@@ -51,7 +55,7 @@ def generate_launch_description():
             'debug': 'false',
             'gui': 'true',
             'paused': 'true',
-            #'world' : world_file
+            'world' : world_file
         }.items()
     )
 

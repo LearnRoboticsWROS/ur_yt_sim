@@ -11,6 +11,8 @@ find_package(xacro REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(trajectory_msgs REQUIRED)
+find_package(moveit_ros_planning_interface REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -24,8 +26,16 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-install(DIRECTORY launch urdf config meshes worlds rviz
+add_executable(test_ik src/test_ik.cpp)
+ament_target_dependencies(test_ik rclcpp moveit_ros_planning_interface sensor_msgs geometry_msgs)
+
+install(DIRECTORY launch urdf config meshes worlds rviz models
   DESTINATION share/${PROJECT_NAME})
+
+install(TARGETS 
+  test_ik
+  DESTINATION lib/${PROJECT_NAME}/
+)
 
 
 ament_package()
