@@ -4,6 +4,11 @@
    <!-- robot name parameter -->
    <xacro:arg name="name" default="ur"/>
    <!-- import main macro -->
+   <xacro:property name="URYT" value="$(find ur_yt_sim)"/>
+   <xacro:property name="ROBI" value="$(find robotiq_description)"/>
+   <!-- <xacro:include filename="$(find-pkg-share ur_yt_sim)/urdf/camera.xacro"/>
+   <xacro:include filename="$(find-pkg-share ur_yt_sim)/urdf/ur5_macro.xacro"/> -->
+   
    <xacro:include filename="$(find ur_yt_sim)/urdf/camera.xacro"/>
    <xacro:include filename="$(find ur_yt_sim)/urdf/ur5_macro.xacro"/>
 
@@ -49,9 +54,12 @@
    <xacro:arg name="sim_gazebo" default="true" />
    <xacro:arg name="sim_ignition" default="false" />
    <xacro:arg name="simulation_controllers" default="$(find ur_yt_sim)/config/ur5_controllers_gripper.yaml" />
+   <!-- <xacro:arg name="simulation_controllers" default="$(find-pkg-share ur_yt_sim)/config/ur5_controllers_gripper.yaml" /> -->
+   
 
    <!-- initial position for simulations (Fake Hardware, Gazebo, Ignition) -->
    <xacro:arg name="initial_positions_file" default="$(find ur_yt_sim)/config/initial_positions.yaml"/>
+   <!-- <xacro:arg name="initial_positions_file" default="$(find-pkg-share ur_yt_sim)/config/initial_positions.yaml"/> -->
 
    <!-- convert to property to use substitution in function -->
    <xacro:property name="initial_positions_file" default="$(arg initial_positions_file)"/>
@@ -152,7 +160,7 @@
   </xacro:if>
 
 
-  <xacro:arg name="use_fake_hardware" default="true" />
+  <xacro:arg name="use_fake_hardware" default="false" />
   <xacro:arg name="com_port" default="/dev/ttyUSB0" />
 
 
@@ -160,8 +168,14 @@
   <!-- Import macros -->
   <xacro:include filename="$(find ur_yt_sim)/urdf/robotiq_gripper_macro.xacro" />
 
-  <xacro:robotiq_gripper name="RobotiqGripperHardwareInterface" prefix="" parent="tool0" use_fake_hardware="$(arg use_fake_hardware)" com_port="$(arg com_port)" sim_gazebo="$(arg sim_gazebo)">
-    <origin xyz="0 0 0" rpy="0 0 0" />
+  <xacro:robotiq_gripper
+    name="RobotiqGripperHardwareInterface"
+    prefix=""
+    parent="tool0"
+    sim_gazebo="$(arg sim_gazebo)"
+    com_port="$(arg com_port)">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
   </xacro:robotiq_gripper>
+
 
 </robot>

@@ -17,15 +17,16 @@
         <visual>
             <geometry>
                 <!-- <box size="0.01 0.03 0.03" /> -->
-                <mesh filename="package://ur_yt_sim/meshes/sensors/camera/kinetic.stl"/>
+                <!-- <mesh filename="package://ur_yt_sim/meshes/sensors/camera/kinetic.stl"/> -->
+                <mesh filename="file://${URYT}/meshes/sensors/camera/kinetic.stl"/>
      
             </geometry>
             <material name="red"/>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://ur_yt_sim/meshes/sensors/camera/kinetic.dae"/>
-
+                <!-- <mesh filename="package://ur_yt_sim/meshes/sensors/camera/kinetic.dae"/> -->
+                <mesh filename="file://${URYT}/meshes/sensors/camera/kinetic.dae"/>
             </geometry>
         </collision>
     </link>
@@ -46,50 +47,19 @@
     </joint>
 
     <gazebo reference="camera_link">
-
-        <visual>
-            <geometry>
-                <mesh>
-                    <uri>package://ur_yt_sim/meshes/sensors/camera/kinetic.stl</uri>
-                </mesh>
-            </geometry>
-            <material>Gazebo/Red</material>
-        </visual>
-        <!-- <material>Gazebo/Red</material> -->
-
         <sensor name="camera" type="depth">
-            <pose> 0 0 0 0 0 0 </pose>
+            <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
             <update_rate>10</update_rate>
-
             <camera>
-                <horizontal_fov>1.089</horizontal_fov>
-                <image>
-                    <format>R8G8B8</format>
-                    <width>640</width>
-                    <height>480</height>
-                </image>
-                <clip>
-                    <near>0.05</near>
-                    <far>8</far>
-                </clip>
+            <horizontal_fov>1.089</horizontal_fov>
+            <image><format>R8G8B8</format><width>640</width><height>480</height></image>
+            <clip><near>0.05</near><far>8</far></clip>
             </camera>
-
-            <plugin name="camera_controller" filename="libgazebo_ros_camera.so" >
-                <frame_name>camera_optical_link</frame_name>
-
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <frame_name>camera_optical_link</frame_name>
             </plugin>
         </sensor>
-
-    </gazebo>
-
-    <gazebo reference="camera_link">
-        <visual>
-            <geometry>
-                <mesh filename="package://ur_yt_sim/meshes/sensors/camera/kinetic.stl"/>
-            </geometry>
-            <material>Gazebo/Red</material>
-        </visual>
     </gazebo>
 
 

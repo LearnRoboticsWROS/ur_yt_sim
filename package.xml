@@ -16,13 +16,26 @@
   <depend>moveit_ros_planning_interface</depend>
   <depend>sensor_msgs</depend>
 
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>gazebo_msgs</exec_depend>
+  <exec_depend>ros2_control</exec_depend>
+  <exec_depend>ros2_controllers</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>ur_description</exec_depend>
+  <exec_depend>robotiq_description</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>moveit_ros_move_group</exec_depend>
+
+
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
-    <gazebo_ros  gazebo_model_path = "/home/fra/ur_yt_ws/install/ur_yt_sim/share/"/>
-    <gazebo_ros  gazebo_model_path = "/home/fra/ur_yt_ws/install/robotiq_description/share/"/>
+    <!-- <gazebo_ros  gazebo_model_path = "/home/fra/ur_yt_ws/install/ur_yt_sim/share/"/>
+    <gazebo_ros  gazebo_model_path = "/home/fra/ur_yt_ws/install/robotiq_description/share/"/> -->
+    <!-- <gazebo_ros gazebo_model_path="${prefix}/share/ur_yt_sim:${prefix}/share/robotiq_description"/> -->
   </export>
 </package>
