@@ -20,7 +20,9 @@ def generate_launch_description():
     robotiq_share  = get_package_share_directory("robotiq_description")
     ur_share       = get_package_share_directory("ur_description")
     gazebo_ros_dir = get_package_share_directory("gazebo_ros")
-
+    world_file = os.path.join(
+        get_package_share_directory('ur_yt_sim'), 'worlds', 'world2.world'
+    )
     # --- ENV Gazebo (minimi, nessun assoluto hard-coded) ---
     ld.add_action(SetEnvironmentVariable(
         name="GAZEBO_RESOURCE_PATH",
@@ -73,7 +75,7 @@ def generate_launch_description():
     # --- Gazebo (in pausa) ---
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(gazebo_ros_dir, "launch", "gazebo.launch.py")),
-        launch_arguments={"use_sim_time":"true", "gui":"true", "paused":"true"}.items()
+        launch_arguments={"use_sim_time":"true", "gui":"true", "paused":"true", 'world' : world_file}.items()
     )
     ld.add_action(gazebo)
 
