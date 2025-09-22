@@ -29,11 +29,15 @@ endif()
 add_executable(test_ik src/test_ik.cpp)
 ament_target_dependencies(test_ik rclcpp moveit_ros_planning_interface sensor_msgs geometry_msgs)
 
+add_executable(test_ik_collision_obj src/test_ik_collision_obj.cpp)
+ament_target_dependencies(test_ik_collision_obj rclcpp moveit_ros_planning_interface sensor_msgs geometry_msgs)
+
+
 install(DIRECTORY launch urdf config meshes worlds rviz models
   DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS 
-  test_ik
+  test_ik test_ik_collision_obj
   DESTINATION lib/${PROJECT_NAME}/
 )
 

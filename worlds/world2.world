@@ -672,5 +672,6 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
+    <plugin name="gazebo_link_attacher" filename="libgazebo_link_attacher.so"/>
   </world>
 </sdf>
