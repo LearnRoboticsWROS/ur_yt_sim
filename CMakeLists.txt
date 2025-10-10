@@ -14,6 +14,9 @@ find_package(trajectory_msgs REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
+find_package(linkattacher_msgs REQUIRED)  
+find_package(ros2_linkattacher REQUIRED)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -32,12 +35,15 @@ ament_target_dependencies(test_ik rclcpp moveit_ros_planning_interface sensor_ms
 add_executable(test_ik_collision_obj src/test_ik_collision_obj.cpp)
 ament_target_dependencies(test_ik_collision_obj rclcpp moveit_ros_planning_interface sensor_msgs geometry_msgs)
 
+add_executable(pick_place src/pick_place.cpp)
+ament_target_dependencies(pick_place rclcpp moveit_ros_planning_interface sensor_msgs geometry_msgs linkattacher_msgs ros2_linkattacher)
+
 
 install(DIRECTORY launch urdf config meshes worlds rviz models
   DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS 
-  test_ik test_ik_collision_obj
+  test_ik test_ik_collision_obj pick_place
   DESTINATION lib/${PROJECT_NAME}/
 )
 
